@@ -1,0 +1,36 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "Бэкэнд отвечающий за сохранение фильмов  и авторизацию пользователей.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoxyKiss/Movies-explorer-api.git"
+  },
+  "author": "Arsentiy Polyakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FoxyKiss/Movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/FoxyKiss/Movies-explorer-api#readme",
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "celebrate": "^15.0.1",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "validator": "^13.7.0"
+  }
+}
