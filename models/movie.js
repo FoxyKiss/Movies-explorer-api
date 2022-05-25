@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const validateUrl = require('../utils/validateUrl');
+const { validateUrl } = require('../utils/validateUrl');
 
 const movieSchema = new mongoose.Schema({
   country: {
