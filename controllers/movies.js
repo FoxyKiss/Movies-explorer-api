@@ -1,6 +1,7 @@
 const Movie = require('../models/movie');
 const { NotFoundError } = require('../errors/NotFoundError');
 const { BadRequestError } = require('../errors/BadRequestError');
+const { ForbiddenError } = require('../errors/ForbiddenError');
 
 function findAllMovies(req, res, next) {
   Movie.find({})
@@ -54,10 +55,15 @@ function deleteMovie(req, res, next) {
     .orFail(() => {
       throw new NotFoundError('Фильм  не найден');
     })
-    .then((movie) => movie.remove()
-      .then(() => {
-        res.send({ message: 'Фильм удалён' });
-      })).catch(next);
+    .then((movie) => {
+      if (!movie.owner.equals(req.user._id)) {
+        return next(new ForbiddenError('Вы не можете удалить чужой фильм из избранного'));
+      }
+      return movie.remove()
+        .then(() => {
+          res.send({ message: 'Фильм удалён из избранного' });
+        });
+    }).catch(next);
 }
 
 module.exports = {
