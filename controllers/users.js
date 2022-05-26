@@ -51,14 +51,14 @@ function updateUserInfo(req, res, next) {
 }
 
 function register(req, res, next) {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   if (!email || !password) throw new BadRequestError('Email или пароль не могут быть пустыми');
 
   bcrypt.hash(password, 10)
     .then((hash) => {
       User.create({
-        email, password: hash,
+        name, email, password: hash,
       })
         .then(() => res.status(200).send({ email }))
         .catch((err) => {

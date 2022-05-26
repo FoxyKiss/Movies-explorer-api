@@ -4,6 +4,7 @@ const { register, login } = require('../controllers/users');
 
 router.post('/signup', celebrate({
   body: Joi.object().keys({
+    name: Joi.string(),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
