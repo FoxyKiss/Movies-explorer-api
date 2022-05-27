@@ -44,7 +44,7 @@ function createMovie(req, res, next) {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Введены некорретные данные'));
       }
-      next(err);
+      return next(err);
     });
 }
 

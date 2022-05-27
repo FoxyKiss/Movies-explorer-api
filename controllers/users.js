@@ -46,7 +46,7 @@ function updateUserInfo(req, res, next) {
         return next(new BadRequestError('Передан некорретный Id'));
       }
 
-      next(err);
+      return next(err);
     });
 }
 
@@ -68,7 +68,7 @@ function register(req, res, next) {
           if (err.name === 'ValidationError') {
             return next(new BadRequestError('Введены некорретные данные'));
           }
-          next(err);
+          return next(err);
         });
     }).catch(next);
 }
