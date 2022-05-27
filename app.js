@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,10 +12,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { NotFoundError } = require('./errors/NotFoundError');
 
 // ? Создать Порт и Express сервер
-const { PORT = 3000 } = process.env;
+const { PORT, MONGO_URL } = process.env;
 const app = express();
 // ? Подключение к DB
-mongoose.connect('mongodb://127.0.0.1:27017/moviesdb');
+mongoose.connect(MONGO_URL);
 
 // ? Работа с роутами
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(corsRequest);
 app.use(helmet());
 app.use(requestLogger);
-app.use(limiter());
+app.use(limiter);
 
 app.use(require('./routes/auth'));
 
