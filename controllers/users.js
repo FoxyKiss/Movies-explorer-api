@@ -17,11 +17,10 @@ function getCurrentUser(req, res, next) {
       res.send({ user });
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Передан некорретный Id'));
-        return;
+      if (err.name === 'ValidationError') {
+        return next(new BadRequestError('Введены некорретные данные'));
       }
-      next(err);
+      return next(err);
     });
 }
 
