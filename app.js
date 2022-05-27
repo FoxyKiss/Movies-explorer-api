@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 const corsRequest = require('./middlewares/corsRequest');
+const limiter = require('./utils/limiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { NotFoundError } = require('./errors/NotFoundError');
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(corsRequest);
 app.use(helmet());
 app.use(requestLogger);
+app.use(limiter());
 
 app.use(require('./routes/auth'));
 
