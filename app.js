@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { NotFoundError } = require('./errors/NotFoundError');
 
 // ? Создать Порт и Express сервер
-const { PORT, MONGO_URL } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
 const app = express();
 // ? Подключение к DB
 mongoose.connect(MONGO_URL);
